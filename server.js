@@ -4,10 +4,13 @@ var bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(express.static(__dirname + '/public'));
 
 var mongoose = require('mongoose');
 mongoose.connect('localhost');
 // mongoose.connect('mongodb://colin:pw@apollo.modulusmongo.net:27017/y3Pyhoxy');
+
+// require('./app/routes')(app);
 var Ingredient = require('./app/models/ingredient');
 
 var port = process.env.PORT || 8080;
