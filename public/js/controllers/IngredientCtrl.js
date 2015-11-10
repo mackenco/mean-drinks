@@ -1,5 +1,7 @@
 angular.module('IngredientCtrl', [])
   .controller('IngredientController', function($scope, Ingredient) {
+    $scope.dummy = ['gin', 'rum', 'bourbon'];
+
     Ingredient.get().then(function(response) {
       $scope.ingredients = response.data; 
     });
