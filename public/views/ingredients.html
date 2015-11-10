@@ -6,8 +6,9 @@
   <div class="form-group">
     <label for="name">Name</label>
     <input type="text" class="form-control" id="name" placeholder="Add to Pantry"
-      ng-model="newIngredient.name" 
-      uib-typeahead="i as i.name for i in ingredients | filter: {name:$viewValue}">
+      ng-model="newIngredient" autocomplete="off"
+      uib-typeahead="i as i.name for i in ingredients | 
+        filter: { name:$viewValue, inPantry: 'false' }">
   </div>
   <button type="submit" class="btn btn-default" ng-click="add(newIngredient)">Add</button>
 </form>
