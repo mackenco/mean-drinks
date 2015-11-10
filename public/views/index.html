@@ -2,11 +2,40 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <base href="/">
 
     <title>Colin's Bar</title>
+
+    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="libs/angular/angular.min.js"></script>
+    <script src="libs/angular-route/angular-route.min.js"></script>
+
+    <script src="js/controllers/MainCtrl.js"></script>
+
+    <script src="js/controllers/MainCtrl.js"></script>
+    <script src="js/controllers/IngredientCtrl.js"></script>
+    <script src="js/services/IngredientService.js"></script>
+    <script src="js/appRoutes.js"></script>
+    <script src="js/app.js"></script>
   </head>
 
-  <body>
-    Sup yall
+  <body ng-app="meanDrinks" ng-controller="IngredientController">
+    <div class="container">
+
+      <nav class="navbar navbar-inverse">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Home</a>
+        </div>
+
+        <ul class="nav navbar-nav">
+          <li><a href="/ingredients">Pantry</a></li>
+        </ul>
+      </nav>
+    
+      <div ng-view></div>
+
+    </div>
   </body>
 </html>

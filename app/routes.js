@@ -12,6 +12,7 @@ var Ingredient = require('./models/ingredient');
     app.post('/api/ingredients', function(req, res) {
       var ingredient = new Ingredient();
       ingredient.name = req.body.name; 
+      ingredient.inPantry = req.body.inPantry;
 
       ingredient.save(function(err) {
         if (err) { res.send(err); }
@@ -32,6 +33,7 @@ var Ingredient = require('./models/ingredient');
         if (err) { res.send(err); }
 
         ingredient.name = req.body.name;
+        ingredient.inPantry = req.body.inPantry;
 
         ingredient.save(function(err) { 
           if (err) { res.send(err); } 

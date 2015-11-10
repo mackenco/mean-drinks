@@ -1,0 +1,19 @@
+<div class="jumbotron text-center">
+  <h1>Pantry</h1>
+</div>
+
+<form class="form-inline">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" placeholder="Add to Pantry"
+     ng-model="newIngredient.name">
+  </div>
+  <button type="submit" class="btn btn-default" ng-click="add(newIngredient)">Add</button>
+</form>
+
+<ul class="list-unstyled" ng-repeat="i in ingredients | filter: { inPantry: 'true' }">
+  <li>
+    <span class="glyphicon glyphicon-remove" ng-click="remove(i)"></span>
+    {{i.name}}
+  </li>
+</ul>

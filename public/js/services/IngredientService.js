@@ -1,0 +1,17 @@
+angular.module('IngredientService', [])
+  .factory('Ingredient', ['$http', function($http) {
+  
+    return {
+      get: function() {
+        return $http.get('/api/ingredients'); 
+      },
+  
+      create: function(ingredientData) {
+        return $http.post('/api/ingredients', ingredientData); 
+      },
+
+      delete: function(id) {
+        return $http.delete('/api/ingredients/' + id);         
+      } 
+    } 
+  }]);
