@@ -51,6 +51,24 @@ var Ingredient = require('./models/ingredient');
       }); 
     });
 
+    app.get('/api/ingredients_seed', function(req, res) {
+      var list = ["absinthe","angostura bitters","bourbon","campari","dry vermouth","egg",
+      "gin","grenadine","honey syrup","lemon","light rum","maraschino","orange bitters",
+      "orange blossom water","orange juice","orange liqueur","peychauds bitters",
+      "rye","scotch","soda","sugar","sweet vermouth","syrup","whiskey","brandy"];
+
+      list.forEach(function(item) {
+        var ingredient = new Ingredient();
+        ingredient.name = item;
+        ingredient.inPantry = true;
+        ingredient.save(function(err) { 
+          if (err) { res.send(err); } 
+        });
+      });
+
+      res.json({ message: 'All done' });
+    });
+
     app.get('*', function(req, res) {
       res.sendfile('./public/views/index.html'); 
     });
