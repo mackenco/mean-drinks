@@ -7,6 +7,11 @@ angular.module('appRoutes', [])
         controller: 'MainController' 
       }) 
 
+      .when('/drinks', {
+        templateUrl: 'views/drinks.html',
+        controller: 'DrinkController' 
+      })
+
       .when('/ingredients', {
         templateUrl: 'views/ingredients.html',
         controller: 'IngredientController' 

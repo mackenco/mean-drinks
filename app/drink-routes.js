@@ -1,4 +1,6 @@
 var Drink = require('./models/drink');
+var Ingredient = require('./models/ingredient');
+var _ = require('underscore');
 
 exports.list = function(req, res) {
   Drink.find(function(err, drinks) {
@@ -14,6 +16,18 @@ exports.create = function(req, res) {
   drink.favorite = req.body.favorite;
   drink.url = req.body.url;
   drink.ingredients = req.body.ingredients;
+
+  _.each(drink.ingredients, function(i) {
+    Ingredient.findOne({ name: i }, function(err, ingredient) {
+      if (!ingredient) { 
+        console.log(ingredient + ' is new');
+        var newIngredient = new Ingredient({name: i});
+        newIngredient.save(function(err) {
+          if (err) { res.send(err); } 
+        });
+      }
+    }); 
+  });
 
   drink.save(function(err) {
     if (err) { res.send(err); } 
