@@ -1,0 +1,11 @@
+<ul class="list-unstyled" ng-repeat="d in drinks">
+  <li ng-click="setCollapse(d._id)">{{d.name}}</li>
+  <div uib-collapse="collapsedId !== d._id">
+    <div class="well well-lg">
+      <a href="{{d.url}}" target="_blank">Launch</a>
+      <ul class="list-unstyled" ng-repeat="i in d.ingredients">
+        <li>{{i}}</li>
+      </ul>
+    </div>
+  </div>
+</ul>

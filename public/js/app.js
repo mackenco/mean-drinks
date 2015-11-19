@@ -1,2 +1,2 @@
-angular.module('meanDrinks', ['ngRoute', 'appRoutes', 'MainCtrl', 'IngredientCtrl', 'IngredientService', 'ui.bootstrap']);
+angular.module('meanDrinks', ['ngRoute', 'appRoutes', 'MainCtrl', 'IngredientCtrl', 'IngredientService', 'DrinkCtrl', 'DrinkService', 'DrinkListDirective', 'ui.bootstrap']);
 
