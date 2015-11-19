@@ -15,7 +15,7 @@ exports.create = function(req, res) {
   ingredient.save(function(err) {
     if (err) { res.send(err); }
 
-    res.json({ message: 'Ingredient added' }); 
+    res.json({ message: 'Ingredient added', id: ingredient._id }); 
   });
 };
 
@@ -35,7 +35,7 @@ exports.update = function(req, res) {
 
     ingredient.save(function(err) { 
       if (err) { res.send(err); } 
-      res.json({ message: 'Ingredient updated!' });
+      res.json({ message: 'Ingredient updated!', id: ingredient._id });
     });
   }); 
 };

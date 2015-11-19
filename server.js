@@ -24,14 +24,14 @@ app.post('/api/ingredients', ingredients.create);
 app.get('/api/ingredients/:ingredient_id', ingredients.show);
 app.put('/api/ingredients/:ingredient_id', ingredients.update);
 app.delete('/api/ingredients/:ingredient_id', ingredients.delete);
-app.get('/api/ingredients_seed', ingredients.seed);
+app.post('/api/ingredients_seed', ingredients.seed);
 
 app.get('/api/drinks', drinks.list);
-// app.post('/api/drinks', drinks.create);
-// app.get('/api/drinks/:drink_id', drinks.show);
-// app.put('/api/drinks/:drink_id', drinks.update);
+app.post('/api/drinks', drinks.create);
+app.get('/api/drinks/:drink_id', drinks.show);
+app.put('/api/drinks/:drink_id', drinks.update);
 app.delete('/api/drinks/:drink_id', drinks.delete);
-app.get('/api/drink_seeds', drinks.seed);
+app.post('/api/drink_seeds', drinks.seed);
 
 app.get('*', function(req, res) {
   res.sendfile('./public/views/index.html');

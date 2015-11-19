@@ -6,5 +6,5 @@ module.exports = mongoose.model('Drink', {
   made: { type: Boolean, default: false },
   favorite: { type: Boolean, default: false },
   url: String,
-  ingredient_ids: [{type: Schema.Types.ObjectId, ref: 'Ingredient'}]
+  ingredients: [String]
 });

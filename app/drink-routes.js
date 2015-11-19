@@ -1,10 +1,50 @@
 var Drink = require('./models/drink');
-var Ingredient = require('./models/ingredient');
 
 exports.list = function(req, res) {
   Drink.find(function(err, drinks) {
     if (err) { res.send(err); } 
     res.json(drinks);
+  });
+};
+
+exports.create = function(req, res) {
+  var drink = new Drink();
+  drink.name = req.body.name;
+  drink.made = req.body.made;
+  drink.favorite = req.body.favorite;
+  drink.url = req.body.url;
+  drink.ingredients = req.body.ingredients;
+
+  drink.save(function(err) {
+    if (err) { res.send(err); } 
+
+    res.json({ message: 'Drink added', id: drink._id });
+  });
+};
+
+exports.show = function(req, res) {
+  Drink.findById(req.params.drink_id, function(err, drink) {
+    if (err) { res.send(err); } 
+    res.json(drink);
+  });
+}
+
+exports.update = function(req, res) {
+  Drink.findById(req.params.drink_id, function(err, drink) {
+    if (err) { res.send(err); } 
+
+    drink.name = req.body.name;
+    drink.made = req.body.made;
+    drink.favorite = req.body.favorite;
+    drink.url = req.body.url;
+    drink.ingredients = req.body.ingredients;
+
+    drink.save(function(err) {
+      if (err) { res.send(err); } 
+
+      res.json({ message: 'Drink updated!', id: drink._id });
+    });
+
   });
 };
 
@@ -31,20 +71,7 @@ exports.seed = function(req, res) {
   drink.made = d.made;
   drink.favorite = d.favorite;
   drink.url = d.url;
-  drink.ingredient_ids = [];
-  d.ingredients.forEach(function(i) {
-    Ingredient.findOne({'name': i}, function(err, ingredient) {
-      if (err) { res.send(err); }
-      if (ingredient) {
-        drink.ingredient_ids.push(ingredient._id);
-      } else {
-        var newIngredient = new Ingredient();
-        newIngredient.name = i;
-        newIngredient.save();
-        drink.ingredient_ids.push(newIngredient._id);
-      }
-    });
-  });
+  drink.ingredients = d.ingredients;
 
   drink.save(function(err) {
     if (err) { res.send(err); } 
