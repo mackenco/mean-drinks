@@ -72,20 +72,21 @@ exports.delete = function(req, res) {
 };
 
 exports.offBy = function(req, res) {
-  var diff = req.params.off_by;
+  var offBy = req.params.off_by;
   var returnDrinks;
 
   Ingredient.find({ inPantry: true}, function(err, ingreds) {
     if (err) { res.send(err); }
-    var names = _.pluck(ingreds, 'name'); 
+    var pantry = _.pluck(ingreds, 'name'); 
 
     Drink.find({}, function(err, drinks) {
-      // _.each(function(drink) {
-         
-      // });
+      _.each(drinks, function(drink) {
+        var diff = _.difference(drink.ingredients, pantry);
+        if (diff === offBy) { returnDrinks.push(drink); }
+      });
     
       if (err) { res.send(err); }
-      res.json({ message: names });
+      res.json({ offBy: offBy, drinks: returnDrinks });
     });
   });
 };
