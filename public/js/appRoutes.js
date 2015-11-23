@@ -3,8 +3,8 @@ angular.module('appRoutes', [])
 
     $routeProvider
       .when('/', {
-        templateUrl: 'views/home.html',
-        controller: 'MainController' 
+        templateUrl: 'views/make.html',
+        controller: 'MakeController' 
       }) 
 
       .when('/drinks', {

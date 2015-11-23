@@ -32,6 +32,7 @@ app.get('/api/drinks/:drink_id', drinks.show);
 app.put('/api/drinks/:drink_id', drinks.update);
 app.delete('/api/drinks/:drink_id', drinks.delete);
 app.post('/api/drink_seeds', drinks.seed);
+app.get('/api/drinks_off_by/:off_by', drinks.offBy);
 
 app.get('*', function(req, res) {
   res.sendfile('./public/views/index.html');

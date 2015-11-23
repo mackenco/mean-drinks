@@ -71,6 +71,25 @@ exports.delete = function(req, res) {
   });
 };
 
+exports.offBy = function(req, res) {
+  var diff = req.params.off_by;
+  var returnDrinks;
+
+  Ingredient.find({ inPantry: true}, function(err, ingreds) {
+    if (err) { res.send(err); }
+    var names = _.pluck(ingreds, 'name'); 
+
+    Drink.find({}, function(err, drinks) {
+      // _.each(function(drink) {
+         
+      // });
+    
+      if (err) { res.send(err); }
+      res.json({ message: names });
+    });
+  });
+};
+
 exports.seed = function(req, res) {
   var d = {
     name: 'Manhattan',
