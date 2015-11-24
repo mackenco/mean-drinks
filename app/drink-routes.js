@@ -72,8 +72,8 @@ exports.delete = function(req, res) {
 };
 
 exports.offBy = function(req, res) {
-  var offBy = req.params.off_by;
-  var returnDrinks;
+  var offBy = Number(req.params.off_by);
+  var returnDrinks = [];
 
   Ingredient.find({ inPantry: true}, function(err, ingreds) {
     if (err) { res.send(err); }
@@ -81,7 +81,7 @@ exports.offBy = function(req, res) {
 
     Drink.find({}, function(err, drinks) {
       _.each(drinks, function(drink) {
-        var diff = _.difference(drink.ingredients, pantry);
+        var diff = _.difference(drink.ingredients, pantry).length;
         if (diff === offBy) { returnDrinks.push(drink); }
       });
     
