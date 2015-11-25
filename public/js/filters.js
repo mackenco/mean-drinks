@@ -1,0 +1,19 @@
+angular.module('Filters', [])
+  .filter('iPrint', function() {
+    return function(input) {
+      var out = "";
+
+      input.sort().forEach(function(ingredient) {
+        out = out + (ingredient[0].toUpperCase() + ingredient.slice(1) + " | ");   
+      }); 
+
+      return out.slice(0, out.length -2);
+    };
+  })
+  .filter('titleize', function() {
+    return function(input) {
+      return input.replace(/\w\S*/g, function(txt){
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      });
+    }; 
+  });

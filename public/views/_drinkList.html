@@ -2,12 +2,9 @@
   <tbody ng-repeat="d in drinks track by $index"> 
 
     <tr data-toggle="collapse" data-target="drink-{{$index}}" class="accordion-toggle">
-      <td>{{d.name}}</td>
-      <td><a href="{{d.url}}" target="_blank">Launch</a></td>
-    </tr>
-
-    <tr>
-      <td class="accordion-body collapse" id="drink-{{$index}}">{{d.ingredients}}</td>
+      <td width="3%"><a href="{{d.url}}" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></td>
+      <td width="15%">{{d.name | titleize}}</td>
+      <td>{{d.ingredients | iPrint}}</td>
     </tr>
 
   </tbody>
