@@ -3,9 +3,31 @@ var Ingredient = require('./models/ingredient');
 var _ = require('underscore');
 
 exports.list = function(req, res) {
-  Drink.find(function(err, drinks) {
-    if (err) { res.send(err); } 
+  var offBy = req.query.off_by;
+
+  return Drink.find().then(function(drinks) {
+    if (offBy) {
+      return Ingredient.find({ inPantry: true}).then(function(ingreds) {
+        var pantry = _.pluck(ingreds, 'name'),
+        returnDrinks = [];
+
+        _.each(drinks, function(drink) {
+          var diff = _.difference(drink.ingredients, pantry).length;
+          if (diff === Number(offBy)) { returnDrinks.push(drink); } 
+        }); 
+
+        return returnDrinks;
+      });
+
+    } else {
+      return drinks;
+    }
+  })
+  .then(function(drinks){
     res.json(drinks);
+  })
+  .catch(function(err) {
+    res.send(err); 
   });
 };
 
@@ -20,7 +42,6 @@ exports.create = function(req, res) {
   _.each(drink.ingredients, function(i) {
     Ingredient.findOne({ name: i }, function(err, ingredient) {
       if (!ingredient) { 
-        console.log(ingredient + ' is new');
         var newIngredient = new Ingredient({name: i});
         newIngredient.save(function(err) {
           if (err) { res.send(err); } 
@@ -68,26 +89,6 @@ exports.delete = function(req, res) {
   }, function(err, drink) {
     if (err) { res.send(err); }
     res.json({ message: 'Successfully deleted' });
-  });
-};
-
-exports.offBy = function(req, res) {
-  var offBy = Number(req.params.off_by);
-  var returnDrinks = [];
-
-  Ingredient.find({ inPantry: true}, function(err, ingreds) {
-    if (err) { res.send(err); }
-    var pantry = _.pluck(ingreds, 'name'); 
-
-    Drink.find({}, function(err, drinks) {
-      _.each(drinks, function(drink) {
-        var diff = _.difference(drink.ingredients, pantry).length;
-        if (diff === offBy) { returnDrinks.push(drink); }
-      });
-    
-      if (err) { res.send(err); }
-      res.json({ offBy: offBy, drinks: returnDrinks });
-    });
   });
 };
 

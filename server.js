@@ -11,6 +11,7 @@ var port = process.env.PORT || 8080;
 
 var mongoose = require('mongoose');
 mongoose.connect(db.url);
+mongoose.Promise = require('q').Promise;
 // mongoose.connect('mongodb://colin:pw@apollo.modulusmongo.net:27017/y3Pyhoxy');
 
 app.use(bodyParser.json());
@@ -32,7 +33,6 @@ app.get('/api/drinks/:drink_id', drinks.show);
 app.put('/api/drinks/:drink_id', drinks.update);
 app.delete('/api/drinks/:drink_id', drinks.delete);
 app.post('/api/drink_seeds', drinks.seed);
-app.get('/api/drinks_off_by/:off_by', drinks.offBy);
 
 app.get('*', function(req, res) {
   res.sendfile('./public/views/index.html');
