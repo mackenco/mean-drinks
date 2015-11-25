@@ -1,11 +1,14 @@
-<ul class="list-unstyled" ng-repeat="d in drinks">
-  <li ng-click="setCollapse(d._id)">{{d.name}}</li>
-  <div uib-collapse="collapsedId !== d._id">
-    <div class="well well-lg">
-      <a href="{{d.url}}" target="_blank">Launch</a>
-      <ul class="list-unstyled" ng-repeat="i in d.ingredients">
-        <li>{{i}}</li>
-      </ul>
-    </div>
-  </div>
-</ul>
+<table class="table table-striped">
+  <tbody ng-repeat="d in drinks track by $index"> 
+
+    <tr data-toggle="collapse" data-target="drink-{{$index}}" class="accordion-toggle">
+      <td>{{d.name}}</td>
+      <td><a href="{{d.url}}" target="_blank">Launch</a></td>
+    </tr>
+
+    <tr>
+      <td class="accordion-body collapse" id="drink-{{$index}}">{{d.ingredients}}</td>
+    </tr>
+
+  </tbody>
+</table>
