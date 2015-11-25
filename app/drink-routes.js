@@ -1,6 +1,7 @@
 var Drink = require('./models/drink');
 var Ingredient = require('./models/ingredient');
 var _ = require('underscore');
+var fs = require('fs');
 
 exports.list = function(req, res) {
   var offBy = req.query.off_by;
@@ -92,25 +93,32 @@ exports.delete = function(req, res) {
   });
 };
 
+exports.drop = function(req, res) {
+  Drink.remove().then(function() {
+    res.json({ message: "What have you done" });
+  })
+  .catch(function(err) {
+    res.send(err); 
+  });
+};
+
 exports.seed = function(req, res) {
-  var d = {
-    name: 'Manhattan',
-    made: true,
-    favorite: true,
-    url: 'http://www.thekitchn.com/cocktail-recipe-the-manhattan-the-9bottle-bar-201396',
-    ingredients: ['sweet vermouth', 'rye', 'angostura bitters'] 
-  };
+  var contents = fs.readFileSync('drinks.json'),
+      jsonDrinks = JSON.parse(contents);
 
-  var drink = new Drink();
-  drink.name = d.name;
-  drink.made = d.made;
-  drink.favorite = d.favorite;
-  drink.url = d.url;
-  drink.ingredients = d.ingredients;
+  _.each(jsonDrinks, function(d) {
+    var drink = new Drink();
+    drink.name = d.name;
+    drink.made = d.made;
+    drink.favorite = d.favorite;
+    drink.url = d.url;
+    drink.ingredients = d.ingredients;
 
-  drink.save(function(err) {
-    if (err) { res.send(err); } 
+    drink.save(function(err) {
+      if (err) { res.send(err); } 
+    });
+ 
   });
 
-  res.json({ message: 'All done' });
+  res.json({ message: "Done" });
 };
