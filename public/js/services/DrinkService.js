@@ -5,6 +5,10 @@ angular.module('DrinkService', [])
       get: function() {
         return $http.get('/api/drinks'); 
       },
+
+      offBy: function(num) {
+        return $http.get('/api/drinks?off_by=' + num);       
+      },
   
       create: function(drinkData) {
         return $http.post('/api/drinks', drinkData); 
