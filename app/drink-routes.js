@@ -6,7 +6,7 @@ var fs = require('fs');
 exports.list = function(req, res) {
   var offBy = req.query.off_by;
 
-  return Drink.find().then(function(drinks) {
+  return Drink.find().sort('name').then(function(drinks) {
     if (offBy) {
       return Ingredient.find({ inPantry: true}).then(function(ingreds) {
         var pantry = _.pluck(ingreds, 'name'),
