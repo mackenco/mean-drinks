@@ -13,8 +13,12 @@ exports.list = function(req, res) {
         returnDrinks = [];
 
         _.each(drinks, function(drink) {
-          var diff = _.difference(drink.ingredients, pantry).length;
-          if (diff === Number(offBy)) { returnDrinks.push(drink); } 
+          var diff = _.difference(drink.ingredients, pantry);
+          if (diff.length === Number(offBy)) { 
+            var toPush = drink.toObject();
+            toPush.diff = diff;
+            returnDrinks.push(toPush); 
+          } 
         }); 
 
         return returnDrinks;
