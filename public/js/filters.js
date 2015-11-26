@@ -1,10 +1,16 @@
 angular.module('Filters', [])
   .filter('iPrint', function() {
-    return function(input) {
-      var out = "";
-
+    return function(input, diff) {
+      var str, 
+          out = "";
+      
       input.sort().forEach(function(ingredient) {
-        out = out + (ingredient[0].toUpperCase() + ingredient.slice(1) + " | ");   
+        if (diff && diff.indexOf(ingredient) > -1) {
+          str = ingredient.toUpperCase(); 
+        } else {
+          str = ingredient[0].toUpperCase() + ingredient.slice(1); 
+        } 
+        out += (str + " | ");   
       }); 
 
       return out.slice(0, out.length -2);

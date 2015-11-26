@@ -5,7 +5,7 @@
       <td width="3%"><a href="{{d.url}}" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></td>
       <td width="3%"><i ng-show="d.favorite" class="glyphicon glyphicon-heart"></i></td>
       <td width="15%">{{d.name | titleize}}</td>
-      <td>{{d.ingredients | iPrint}}</td>
+      <td>{{d.ingredients | iPrint:d.diff }}</td>
     </tr>
 
   </tbody>
