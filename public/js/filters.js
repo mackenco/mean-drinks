@@ -23,4 +23,14 @@ angular.module('Filters', [])
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
       });
     }; 
+  })
+
+  .filter('favorites', function() {
+    return function(drinks, status) {
+      if (!status) { return drinks; } 
+      results = _.filter(drinks, function(drink) {
+        return drink.favorite === true; 
+      });
+      return results; 
+    } 
   });
