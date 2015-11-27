@@ -1,5 +1,5 @@
 <table class="table table-striped">
-  <tbody ng-repeat="d in drinks track by $index"> 
+  <tbody ng-repeat="d in drinks track by $index | filter:filterByCategory"> 
 
     <tr data-toggle="collapse" data-target="drink-{{$index}}" class="accordion-toggle">
       <td width="3%">
