@@ -16,6 +16,7 @@ angular.module('Filters', [])
       return out.slice(0, out.length -2);
     };
   })
+
   .filter('titleize', function() {
     return function(input) {
       return input.replace(/\w\S*/g, function(txt){
