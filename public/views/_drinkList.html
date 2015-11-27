@@ -1,7 +1,15 @@
-<table class="table table-striped">
-  <tbody ng-repeat="d in drinks track by $index | favorites: onlyFavorites"> 
+<label class="checkbox-inline">
+  <input ng-model="options.favorite" type="checkbox">Favorites
+</label>
 
-    <tr data-toggle="collapse" data-target="drink-{{$index}}" class="accordion-toggle">
+<label class="checkbox-inline">
+  <input ng-model="options.unmade" type="checkbox">Unmade
+</label> 
+
+<table class="table table-striped">
+  <tbody ng-repeat="d in drinks | checkboxes:options"> 
+
+    <tr data-toggle="collapse" data-target="drink-{{d._id}}" class="accordion-toggle">
       <td width="3%">
         <a ng-show="d.url" href="{{d.url}}" target="_blank">
           <i class="glyphicon glyphicon-new-window"></i>

@@ -25,12 +25,20 @@ angular.module('Filters', [])
     }; 
   })
 
-  .filter('favorites', function() {
-    return function(drinks, status) {
-      if (!status) { return drinks; } 
-      results = _.filter(drinks, function(drink) {
-        return drink.favorite === true; 
-      });
-      return results; 
-    } 
+  .filter('checkboxes', function() {
+    return function(drinks, types) {
+      if (!types.favorite && !types.unmade) { return drinks; }
+
+      if (types.favorite && types.unmade) {
+        return  _.where(drinks, { favorite: true, made: false }); 
+      }
+
+      if (types.favorite && !types.unmade) {
+        return _.where(drinks, { favorite: true, made: true });
+      }
+
+      if (!types.favorite && types.unmade) {
+        return _.where(drinks, { favorite: false, made: false }); 
+      }
+    }; 
   });

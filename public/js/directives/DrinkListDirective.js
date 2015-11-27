@@ -4,6 +4,7 @@ angular.module('DrinkListDirective', [])
       restrict: 'E',
       link: function($scope) {
         $scope.collapsedId = null;
+        $scope.options = { favorite: false, unmade: false };
 
         $scope.setCollapse = function(id) { 
           if ($scope.collapsedId === id) {
