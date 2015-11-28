@@ -7,7 +7,7 @@
 </label> 
 
 <table class="table table-striped">
-  <tbody ng-repeat="d in drinks | checkboxes:options"> 
+  <tbody ng-repeat="d in filteredDrinks = (drinks | checkboxes:options )"> 
 
     <tr data-toggle="collapse" data-target="drink-{{d._id}}" class="accordion-toggle">
       <td width="3%">
@@ -19,6 +19,6 @@
       <td width="15%">{{d.name | titleize}}</td>
       <td>{{d.ingredients | iPrint:d.diff }}</td>
     </tr>
-
   </tbody>
+  <tr ng-hide="filteredDrinks.length"><td>No Drinks</td></tr>
 </table>
