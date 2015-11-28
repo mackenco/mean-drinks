@@ -1,10 +1,13 @@
 {
   "name": "mean-drinks",
   "main": "server.js",
+  "repository": "https://github.com/mackenco/mean-drinks",
   "dependencies": {
-    "express": "~4.0.0",
     "body-parser": "~1.0.1",
-    "method-override": "~2.0.2"
+    "express": "~4.0.0",
+    "method-override": "~2.0.2",
+    "mongoose": "^4.2.8",
+    "q": "^1.4.1"
   },
   "devDependencies": {
     "jshint": "^2.8.0",
@@ -13,11 +16,9 @@
   },
   "scripts": {
     "livereload": "live-reload --port 9091 public/",
-
     "lint": "npm run lint:client -s & npm run lint:server -s",
     "lint:client": "jshint public/js/ --verbose",
     "lint:server": "jshint app/ --verbose & jshint server.js --verbose",
-
     "open:dev": "opener http://localhost:8080"
   }
 }
