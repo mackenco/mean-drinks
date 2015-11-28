@@ -1,5 +1,4 @@
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+var mongoose = require('mongoose');
 
 module.exports = mongoose.model('Drink', {
   name: { type: String, lowercase: true, unique: true },

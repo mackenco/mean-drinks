@@ -12,7 +12,7 @@ angular.module('DrinkListDirective', [])
 
         $scope.setCollapse = function(id) { 
           if ($scope.collapsedId === id) {
-            $scope.collapsedId = null 
+            $scope.collapsedId = null;
           } else {
             $scope.collapsedId = id; 
           }
@@ -22,5 +22,5 @@ angular.module('DrinkListDirective', [])
         drinks: '=' 
       },
       templateUrl: 'views/_drinkList.html'
-    } 
+    };
   });

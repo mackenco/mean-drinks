@@ -68,7 +68,7 @@ exports.show = function(req, res) {
     if (err) { res.send(err); } 
     res.json(drink);
   });
-}
+};
 
 exports.update = function(req, res) {
   Drink.findById(req.params.drink_id, function(err, drink) {
@@ -90,7 +90,7 @@ exports.update = function(req, res) {
 exports.delete = function(req, res) {
   Drink.remove({
     _id: req.params.drink_id 
-  }, function(err, drink) {
+  }, function(err) {
     if (err) { res.send(err); }
     res.json({ message: 'Successfully deleted' });
   });

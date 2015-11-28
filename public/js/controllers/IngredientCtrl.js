@@ -16,7 +16,7 @@ angular.module('IngredientCtrl', [])
         Ingredient.update(ingredient._id, ingredient); 
       } else {
         var i = { name: ingredient, inPantry: true };
-        Ingredient.create(i).then(function(response) {
+        Ingredient.create(i).then(function() {
           $scope.ingredients.push(i);
         }); 
       }

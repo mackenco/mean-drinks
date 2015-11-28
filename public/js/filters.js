@@ -48,6 +48,6 @@ angular.module('Filters', [])
       if (!ingredient) { return drinks; }
       return _.filter(drinks, function(d) {
         return d.ingredients.indexOf(ingredient.name) > -1; 
-      }); 
+      });
     }; 
   });

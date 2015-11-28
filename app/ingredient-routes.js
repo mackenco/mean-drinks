@@ -49,7 +49,7 @@ exports.update = function(req, res) {
 exports.delete = function(req, res) {
   Ingredient.remove({
     _id: req.params.ingredient_id 
-  }, function(err, ingredient) {
+  }, function(err) {
     if (err) { res.send(err); } 
     res.json({ message: 'Successfully deleted' });
   }); 

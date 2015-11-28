@@ -21,5 +21,5 @@ angular.module('DrinkService', [])
       delete: function(id) {
         return $http.delete('/api/drinks/' + id);         
       } 
-    } 
+    };
   }]);

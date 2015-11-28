@@ -17,5 +17,5 @@ angular.module('IngredientService', [])
       delete: function(id) {
         return $http.delete('/api/ingredients/' + id);         
       } 
-    } 
+    };
   }]);

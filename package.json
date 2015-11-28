@@ -7,9 +7,17 @@
     "method-override": "~2.0.2"
   },
   "devDependencies": {
-    "live-reload": "^1.1.0"
+    "jshint": "^2.8.0",
+    "live-reload": "^1.1.0",
+    "opener": "^1.4.1"
   },
   "scripts": {
-    "livereload": "live-reload --port 9091 public/"
+    "livereload": "live-reload --port 9091 public/",
+
+    "lint": "npm run lint:client -s & npm run lint:server -s",
+    "lint:client": "jshint public/js/ --verbose",
+    "lint:server": "jshint app/ --verbose & jshint server.js --verbose",
+
+    "open:dev": "opener http://localhost:8080"
   }
 }

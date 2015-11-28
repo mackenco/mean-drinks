@@ -1,0 +1,11 @@
+{
+  "eqeqeq": true,
+  "latedef": true,
+  "undef": true,
+  "unused": true,
+  "node": true,
+  "globals": {
+    "_": true,
+    "angular": true
+  }
+}
