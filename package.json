@@ -6,7 +6,10 @@
     "body-parser": "~1.0.1",
     "method-override": "~2.0.2"
   },
+  "devDependencies": {
+    "live-reload": "^1.1.0"
+  },
   "scripts": {
-    "env": "env"  
-  }  
+    "livereload": "live-reload --port 9091 public/"
+  }
 }
