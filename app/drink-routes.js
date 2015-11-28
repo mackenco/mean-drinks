@@ -3,6 +3,8 @@ var Ingredient = require('./models/ingredient');
 var _ = require('underscore');
 var fs = require('fs');
 
+var WHITELIST = ['name', 'url', 'made', 'favorite', 'ingredients'];
+
 exports.list = function(req, res) {
   var offBy = req.query.off_by;
 
@@ -38,11 +40,10 @@ exports.list = function(req, res) {
 
 exports.create = function(req, res) {
   var drink = new Drink();
-  drink.name = req.body.name;
-  drink.made = req.body.made;
-  drink.favorite = req.body.favorite;
-  drink.url = req.body.url;
-  drink.ingredients = req.body.ingredients;
+
+  _.each(WHITELIST, function(attr) {
+    drink[attr] = req.body[attr]; 
+  });
 
   _.each(drink.ingredients, function(i) {
     Ingredient.findOne({ name: i }, function(err, ingredient) {
@@ -73,11 +74,9 @@ exports.update = function(req, res) {
   Drink.findById(req.params.drink_id, function(err, drink) {
     if (err) { res.send(err); } 
 
-    drink.name = req.body.name;
-    drink.made = req.body.made;
-    drink.favorite = req.body.favorite;
-    drink.url = req.body.url;
-    drink.ingredients = req.body.ingredients;
+    _.each(WHITELIST, function(attr) {
+      drink[attr] = req.body[attr] || drink[attr]; 
+    });
 
     drink.save(function(err) {
       if (err) { res.send(err); } 
