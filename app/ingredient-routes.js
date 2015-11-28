@@ -1,9 +1,10 @@
 var Ingredient = require('./models/ingredient');
+var _ = require('underscore');
 
 var WHITELIST = ['name', 'inPantry'];
 
 exports.list = function(req, res) {
-  Ingredient.find(function(err, ingredients) {
+  Ingredient.find().sort('name').exec(function(err, ingredients) {
     if (err) { res.send(err); }
     res.json(ingredients); 
   }); 
