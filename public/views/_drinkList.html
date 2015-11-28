@@ -1,13 +1,20 @@
-<label class="checkbox-inline">
-  <input ng-model="options.favorite" type="checkbox">Favorites
-</label>
+<form class="form-inline">
+  <input type="text" class="form-control" id="ing" 
+    placeholder="Filter by Ingredient" ng-model="ingredient" autocomplete="off"
+    uib-typeahead="i as i.name for i in ingredients | 
+    filter: { name:$viewValue, inPantry: 'true' }">
 
-<label class="checkbox-inline">
-  <input ng-model="options.unmade" type="checkbox">Unmade
-</label> 
+  <label class="checkbox-inline">
+    <input ng-model="options.favorite" type="checkbox">Favorites
+  </label>
+
+  <label class="checkbox-inline">
+    <input ng-model="options.unmade" type="checkbox">Unmade
+  </label> 
+</form>
 
 <table class="table table-striped">
-  <tbody ng-repeat="d in filteredDrinks = (drinks | checkboxes:options )"> 
+  <tbody ng-repeat="d in filteredDrinks = (drinks | checkboxes:options | ingredients:ingredient)"> 
 
     <tr data-toggle="collapse" data-target="drink-{{d._id}}" class="accordion-toggle">
       <td width="3%">

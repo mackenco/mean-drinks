@@ -41,4 +41,13 @@ angular.module('Filters', [])
         return _.where(drinks, { favorite: false, made: false }); 
       }
     }; 
+  })
+
+  .filter('ingredients', function() {
+    return function(drinks, ingredient) {
+      if (!ingredient) { return drinks; }
+      return _.filter(drinks, function(d) {
+        return d.ingredients.indexOf(ingredient.name) > -1; 
+      }); 
+    }; 
   });
