@@ -13,9 +13,11 @@
   <button type="submit" class="btn btn-default" ng-click="add(newIngredient)">Add</button>
 </form>
 
-<ul class="list-unstyled" ng-repeat="i in ingredients | filter: { inPantry: 'true' }">
-  <li>
-    <span class="glyphicon glyphicon-remove" ng-click="remove(i)"></span>
-    {{i.name | titleize }}
-  </li>
-</ul>
+<div class="ing-list">
+  <ul class="list-unstyled">
+    <li ng-repeat="i in ingredients | filter: { inPantry: 'true' }">
+      <span class="glyphicon glyphicon-remove" ng-click="remove(i)"></span>
+      {{i.name | titleize }}
+    </li>
+  </ul>
+</div>

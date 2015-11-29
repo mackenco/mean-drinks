@@ -1,4 +1,4 @@
-<form class="form-inline">
+<form class="form-inline filter-form">
   <input type="text" class="form-control" id="ing" 
     placeholder="Filter by Ingredient" ng-model="ingredient" autocomplete="off"
     uib-typeahead="i as i.name for i in ingredients | 
@@ -13,19 +13,21 @@
   </label> 
 </form>
 
-<table class="table table-striped">
-  <tbody ng-repeat="d in filteredDrinks = (drinks | checkboxes:options | ingredients:ingredient)"> 
+<div class="drink-table-container">
+  <table class="table table-striped">
+    <tbody> 
 
-    <tr data-toggle="collapse" data-target="drink-{{d._id}}" class="accordion-toggle">
-      <td width="3%">
-        <a ng-show="d.url" href="{{d.url}}" target="_blank">
-          <i class="glyphicon glyphicon-new-window"></i>
-        </a>
-      </td>
-      <td width="3%"><i ng-show="d.favorite" class="glyphicon glyphicon-heart"></i></td>
-      <td width="15%">{{d.name | titleize}}</td>
-      <td>{{d.ingredients | iPrint:d.diff }}</td>
-    </tr>
-  </tbody>
-  <tr ng-hide="filteredDrinks.length"><td>No Drinks</td></tr>
-</table>
+      <tr ng-repeat="d in filteredDrinks = (drinks | checkboxes:options | ingredients:ingredient)">
+        <td width="3%">
+          <a ng-show="d.url" href="{{d.url}}" target="_blank">
+            <i class="glyphicon glyphicon-new-window"></i>
+          </a>
+        </td>
+        <td width="3%"><i ng-show="d.favorite" class="glyphicon glyphicon-heart"></i></td>
+        <td width="15%">{{d.name | titleize}}</td>
+        <td>{{d.ingredients | iPrint:d.diff }}</td>
+      </tr>
+      <tr ng-hide="filteredDrinks.length"><td>No Drinks</td></tr>
+    </tbody>
+  </table>
+</div>
