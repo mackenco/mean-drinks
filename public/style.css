@@ -9,10 +9,7 @@
 }
 
 .ing-list {
-  max-height: 400px;
-  overflow: auto;
 }
 
 .ing-list li {
-  float: left;
 }
