@@ -9,7 +9,9 @@
 }
 
 .ing-list {
+  margin-top: 5px;
+  -webkit-column-count: 5;
+  -moz-column-count: 5;
+  column-count: 5;
 }
 
-.ing-list li {
-}
