@@ -15,3 +15,7 @@
   column-count: 5;
 }
 
+.half-opacity {
+  opacity: .5;
+}
+

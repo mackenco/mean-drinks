@@ -1,5 +1,5 @@
 angular.module('DrinkListDirective', [])
-  .directive('drinkList', function(Ingredient) {
+  .directive('drinkList', function(Ingredient, Drink, $rootScope) {
     return {
       restrict: 'E',
       link: function(scope) {
@@ -9,16 +9,35 @@ angular.module('DrinkListDirective', [])
           scope.ingredients = response.data; 
         });
 
-        window.logg = function() {
-          console.log(scope.all);
+        scope.editing = function(drink) {
+          $rootScope.editingDrink = drink; 
+        };
+
+        scope.setEditIcon = function(drink) {
+          if (!$rootScope.editingDrink) {
+            return 'glyphicon-plus-sign'; 
+          } else if ($rootScope.editingDrink._id === drink._id) {
+            return 'glyphicon-minus-sign'; 
+          } else {
+            return 'half-opacity glyphicon-plus-sign'; 
+          }
+        };
+
+        scope.remove = function(drink) {
+          Drink.delete(drink._id)
+            .success(function() {
+              scope.drinks = _.without(scope.drinks, drink);
+            })
+            .error(function(err) {
+              console.error(err); 
+            });
         };
 
       },
-      scope: true,
-      // scope: {
-      //   drinks: '=' 
-      // },
-      transclude: true,
+      scope: {
+        drinks: '=',
+        editable: '='
+      },
       templateUrl: 'views/_drinkList.html'
     };
   });

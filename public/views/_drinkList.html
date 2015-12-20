@@ -26,7 +26,12 @@
         <td width="3%"><i ng-show="d.favorite" class="glyphicon glyphicon-heart"></i></td>
         <td width="15%">{{d.name | titleize}}</td>
         <td>{{d.ingredients | iPrint:d.diff }}</td>
-        <td width="3%"><i ng-show="all" class="glyphicon glyphicon-remove"></i></td>
+        <td width=3%"><i ng-show="editable" ng-click="editing(d)"
+            class="glyphicon" ng-class="setEditIcon(d)"></i>
+        </td>
+        <td width="3%"><i ng-show="editable" ng-click="remove(d)" 
+            class="glyphicon glyphicon-remove"></i>
+        </td>
       </tr>
       <tr ng-hide="filteredDrinks.length"><td>No Drinks</td></tr>
     </tbody>
