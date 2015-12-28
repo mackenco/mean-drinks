@@ -10,7 +10,11 @@ angular.module('DrinkListDirective', [])
         });
 
         scope.editing = function(drink) {
-          $rootScope.editingDrink = drink; 
+          if ($rootScope.editingDrink === drink) {
+            $rootScope.editingDrink = null; 
+          } else {
+            $rootScope.editingDrink = drink; 
+          }
         };
 
         scope.setEditIcon = function(drink) {

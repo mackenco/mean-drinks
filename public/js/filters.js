@@ -43,6 +43,13 @@ angular.module('Filters', [])
     }; 
   })
 
+  .filter('editIngredientPrint', function() {
+    return function(input) {
+      if (input) { return input.join(", "); }
+      return null;
+    }; 
+  })
+
   .filter('ingredients', function() {
     return function(drinks, ingredient) {
       if (!ingredient) { return drinks; }
